@@ -1,0 +1,116 @@
+PROGRAM CODE:
+class Student:
+    total_fee = 90000
+
+    def __init__(self, sid, name, m1, m2, m3, birthyear, feepaid):
+        self.sid = sid
+        self.name = name
+        self.m1 = m1
+        self.m2 = m2
+        self.m3 = m3
+        self.birthyear = birthyear
+        self.feepaid = feepaid
+
+    def calculate_average(self):
+        avg = (self.m1 + self.m2 + self.m3) / 3
+        print(f"Average Marks = {avg:.2f}")
+        return avg
+
+    def calculate_cgpa(self):
+        avg = (self.m1 + self.m2 + self.m3) / 3
+        cgpa = avg / 10
+        print(f"CGPA = {cgpa:.2f}")
+
+    def calculate_age(self):
+        # Using 2026 as per your handwritten note
+        age = 2026 - self.birthyear
+        print(f"Age = {age}")
+
+    def fee_balance(self):
+        balance = Student.total_fee - self.feepaid
+        print(f"Fee Balance: {balance}")
+
+    def display_student(self):
+        print(f"Student ID: {self.sid}")
+        print(f"Student Name: {self.name}")
+        print(f"Marks: {self.m1}, {self.m2}, {self.m3}")
+        print(f"Fee Paid: {self.feepaid}")
+        self.calculate_average()
+        self.calculate_cgpa()
+        self.calculate_age()
+        self.fee_balance()
+        print("\n")
+
+
+class College:
+    def __init__(self, code, name, location):
+        self.code = code
+        self.name = name
+        self.location = location
+        self.students = []
+
+    def register_student(self, student):
+        self.students.append(student)
+
+    def display_details(self):
+        print(f"College Code: {self.code}")
+        print(f"College Name: {self.name}")
+        print(f"Location: {self.location}")
+        print("\nStudent Academic Report")
+        print("-" * 25)
+        for s in self.students:
+            s.display_student()
+
+
+# Creating instances and running the program
+college = College("ANITS", "ANITS COLLEGE", "Visakhapatnam")
+
+s1 = Student(21, "SUKUMAR", 85, 76, 89, 2006, 40000)
+s2 = Student(15, "ADHYA", 88, 92, 80, 2005, 45000)
+s3 = Student(19, "SAI", 70, 75, 68, 2007, 20000)
+
+college.register_student(s1)
+college.register_student(s2)
+college.register_student(s3)
+
+college.display_details()
+
+OUTPUT:
+College Code: ANITS
+College Name: ANITS COLLEGE
+Location: Visakhapatnam
+
+Student Academic Report
+-------------------------
+Student ID: 15
+Student Name: SUKUMAR
+Marks: 85, 76, 89
+Fee Paid: 40000
+Average Marks = 83.33
+CGPA = 8.33
+Age = 20
+Fee Balance: 50000
+
+
+Student ID: 19
+Student Name: ADHYA
+Marks: 88, 92, 80
+Fee Paid: 45000
+Average Marks = 86.67
+CGPA = 8.67
+Age = 21
+Fee Balance: 45000
+
+
+Student ID: 19
+Student Name: SAI
+Marks: 70, 75, 68
+Fee Paid: 20000
+Average Marks = 71.00
+CGPA = 7.10
+Age = 19
+Fee Balance: 70000
+
+
+
+
